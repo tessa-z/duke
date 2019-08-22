@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+//import javafx.util.Pair;
 import java.util.Scanner;
 
 public class Duke {
@@ -7,8 +8,8 @@ public class Duke {
         System.out.println("     Hello! I'm Duke\n     What can I do for you?");
         System.out.println("    ____________________________________________________________");
 
-
-        ArrayList<String> tasks = new ArrayList<String>();
+//        Pair<String, Integer>;
+        ArrayList<String[]> tasks = new ArrayList<String[]>();
 
         while (true) {
             Scanner in = new Scanner(System.in);
@@ -24,14 +25,23 @@ public class Duke {
                 System.out.println("    ____________________________________________________________");
             } else if (input.equals("list")) {
                 System.out.println("    ____________________________________________________________");
+                System.out.println("     Here are the tasks in your list:");
                 int count = 0;
-                for (String task : tasks) {
+                for (String[] task : tasks) {
                     count++;
-                    System.out.println("     " + count + ". " + task);
+                    System.out.println("     " + count + ".[" + task[1] + "] " + task[0]);
                 }
                 System.out.println("    ____________________________________________________________");
+            } else if (input.contains("done")) {
+                String complete[] = input.split(" ");
+                tasks.get(Integer.parseInt(complete[1])-1)[1] = "✓";
+                System.out.println("    ____________________________________________________________");
+                System.out.println("     Nice! I've marked this task as done:");
+                System.out.println("       [" + tasks.get(Integer.parseInt(complete[1])-1)[1] +  "] " + tasks.get(Integer.parseInt(complete[1])-1)[0]);
+                System.out.println("    ____________________________________________________________");
             } else {
-                tasks.add(input);
+                String[] newtask = {input, "✗"};
+                tasks.add(newtask);
                 System.out.println("    ____________________________________________________________");
                 System.out.println("     added: " + input);
                 System.out.println("    ____________________________________________________________");
