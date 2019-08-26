@@ -22,7 +22,11 @@ public class Duke {
                 break;
             } else if (taskInfo[0].equals("done")) {
                 try {
-                    if ((taskInfo.length < 2) || (taskInfo[1].equals(""))) {
+                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) {
+                        DukeException e = new DukeException();
+                        throw e;
+                    }
+                    if (Integer.parseInt(taskInfo[1]) > tasks.size()) {
                         DukeException e = new DukeException();
                         throw e;
                     }
@@ -38,7 +42,7 @@ public class Duke {
                 }
             } else if (taskInfo[0].equals("todo")) {
                 try {
-                    if ((taskInfo.length < 2) || (taskInfo[1].equals(""))) {
+                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) {
                         DukeException e = new DukeException();
                         throw e;
                     }
@@ -55,9 +59,18 @@ public class Duke {
                     System.out.println("    ____________________________________________________________");
                 }
             } else if (taskInfo[0].equals("deadline")) {
-                String dateInfo[] = taskInfo[1].split("/by");
                 try {
-                    if ((dateInfo.length < 2) || (dateInfo[1].equals(" "))) {
+                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) {
+                        DukeException e = new DukeException();
+                        throw e;
+                    }
+                    if (!taskInfo[1].contains("/by")) {
+                        DukeException e = new DukeException();
+                        throw e;
+                    }
+                    String dateInfo[] = taskInfo[1].split("/by ");
+
+                    if ((dateInfo.length < 2) || (dateInfo[1].equals(" ")) || (dateInfo[0].equals(""))) {
                         DukeException e = new DukeException();
                         throw e;
                     }
@@ -74,9 +87,17 @@ public class Duke {
                     System.out.println("    ____________________________________________________________");
                 }
             } else if (taskInfo[0].equals("event")) {
-                String dateInfo[] = taskInfo[1].split("/at");
                 try {
-                    if ((dateInfo.length < 2) || (dateInfo[1].equals(" "))) {
+                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) {
+                        DukeException e = new DukeException();
+                        throw e;
+                    }
+                    if (!taskInfo[1].contains("/at")) {
+                        DukeException e = new DukeException();
+                        throw e;
+                    }
+                    String dateInfo[] = taskInfo[1].split("/at ");
+                    if ((dateInfo.length < 2) || (dateInfo[1].equals(" ")) || (dateInfo[0].equals(""))) {
                         DukeException e = new DukeException();
                         throw e;
                     }

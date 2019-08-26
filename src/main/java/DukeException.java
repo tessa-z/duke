@@ -23,8 +23,8 @@ public class DukeException extends Exception {
         switch(error) {
             case DONE: System.out.println("     ☹ WOT? Expected format: \"done [index of task]\""); break;
             case TODO: System.out.println("     ☹ WOT? Expected format: \"todo [description of task]\""); break;
-            case DEADLINE: System.out.println("     ☹ WOT? Expected format: \"deadline [description of task] /by [date &/ time]\""); break;
-            case EVENT: System.out.println("     ☹ WOT? Expected format: \"event [description of event] /at [date &/ time]"); break;
+            case DEADLINE: System.out.println("     ☹ WOT? Expected format: \"deadline [description of task] /by [date]\""); break;
+            case EVENT: System.out.println("     ☹ WOT? Expected format: \"event [description of event] /at [date]"); break;
         }
     }
 
