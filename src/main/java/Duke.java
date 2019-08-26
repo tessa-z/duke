@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-//import javafx.util.Pair;
 import java.util.Scanner;
 
 public class Duke {
@@ -9,12 +8,12 @@ public class Duke {
         System.out.println("    ____________________________________________________________");
 
 //        Pair<String, Integer>;
-        ArrayList<Task> tasks = new ArrayList<Task>();
+        ArrayList<Task> tasks = new ArrayList<>();
 
         while (true) {
             Scanner in = new Scanner(System.in);
             String input = in.nextLine();
-            String taskInfo[] = input.split(" ", 2);
+            String[] taskInfo = input.split(" ", 2);
             if (input.equals("bye")) {
                 System.out.println("    ____________________________________________________________");
                 System.out.println("     Bye. Hope to see you again soon!");
@@ -22,14 +21,8 @@ public class Duke {
                 break;
             } else if (taskInfo[0].equals("done")) {
                 try {
-                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) {
-                        DukeException e = new DukeException();
-                        throw e;
-                    }
-                    if (Integer.parseInt(taskInfo[1]) > tasks.size()) {
-                        DukeException e = new DukeException();
-                        throw e;
-                    }
+                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException();
+                    if (Integer.parseInt(taskInfo[1]) > tasks.size()) throw new DukeException();
                     tasks.get(Integer.parseInt(taskInfo[1]) - 1).markAsDone();
                     System.out.println("    ____________________________________________________________");
                     System.out.println("     Nice! I've marked this task as done:");
@@ -42,10 +35,7 @@ public class Duke {
                 }
             } else if (taskInfo[0].equals("todo")) {
                 try {
-                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) {
-                        DukeException e = new DukeException();
-                        throw e;
-                    }
+                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException();
                     Todo t = new Todo(taskInfo[1]);
                     tasks.add(t);
                     System.out.println("    ____________________________________________________________");
@@ -60,20 +50,14 @@ public class Duke {
                 }
             } else if (taskInfo[0].equals("deadline")) {
                 try {
-                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) {
-                        DukeException e = new DukeException();
-                        throw e;
-                    }
+                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException();
                     if (!taskInfo[1].contains("/by")) {
-                        DukeException e = new DukeException();
-                        throw e;
+                        throw new DukeException();
                     }
-                    String dateInfo[] = taskInfo[1].split("/by ");
+                    String[] dateInfo = taskInfo[1].split("/by ");
 
-                    if ((dateInfo.length < 2) || (dateInfo[1].equals(" ")) || (dateInfo[0].equals(""))) {
-                        DukeException e = new DukeException();
-                        throw e;
-                    }
+                    if ((dateInfo.length < 2) || (dateInfo[1].equals(" ")) || (dateInfo[0].equals("")))
+                        throw new DukeException();
                     Deadline t = new Deadline(dateInfo[0], dateInfo[1]);
                     tasks.add(t);
                     System.out.println("    ____________________________________________________________");
@@ -88,19 +72,11 @@ public class Duke {
                 }
             } else if (taskInfo[0].equals("event")) {
                 try {
-                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) {
-                        DukeException e = new DukeException();
-                        throw e;
-                    }
-                    if (!taskInfo[1].contains("/at")) {
-                        DukeException e = new DukeException();
-                        throw e;
-                    }
-                    String dateInfo[] = taskInfo[1].split("/at ");
-                    if ((dateInfo.length < 2) || (dateInfo[1].equals(" ")) || (dateInfo[0].equals(""))) {
-                        DukeException e = new DukeException();
-                        throw e;
-                    }
+                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException();
+                    if (!taskInfo[1].contains("/at")) throw new DukeException();
+                    String[] dateInfo = taskInfo[1].split("/at ");
+                    if ((dateInfo.length < 2) || (dateInfo[1].equals(" ")) || (dateInfo[0].equals("")))
+                        throw new DukeException();
                     Event t = new Event(dateInfo[0], dateInfo[1]);
                     tasks.add(t);
                     System.out.println("    ____________________________________________________________");
@@ -115,10 +91,7 @@ public class Duke {
                 }
             } else if (taskInfo[0].equals("list")) {
                 try {
-                    if (tasks.isEmpty()) {
-                        DukeException e = new DukeException();
-                        throw e;
-                    }
+                    if (tasks.isEmpty()) throw new DukeException();
                     System.out.println("    ____________________________________________________________");
                     System.out.println("     Here are the tasks in your list:");
                     int count = 0;
@@ -135,8 +108,7 @@ public class Duke {
                 }
             } else {
                 try {
-                    DukeException e = new DukeException();
-                    throw e;
+                    throw new DukeException();
                 } catch (DukeException e){
                     System.out.println("    ____________________________________________________________");
                     e.invalidCommand();
