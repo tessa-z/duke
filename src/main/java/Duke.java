@@ -1,16 +1,19 @@
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+
     public static void main(String[] args) {
         System.out.println("    ____________________________________________________________");
         System.out.println("     Hello! I'm Duke\n     What can I do for you?");
         System.out.println("    ____________________________________________________________");
 
-//        Pair<String, Integer>;
-        ArrayList<Task> tasks = new ArrayList<>();
+        ArrayList<Task> tasks;
 
         while (true) {
+            FileReading reader = new FileReading();
+            tasks = reader.ReadFile();
             Scanner in = new Scanner(System.in);
             String input = in.nextLine();
             String[] taskInfo = input.split(" ", 2);
@@ -23,11 +26,15 @@ public class Duke {
                 try {
                     if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException();
                     if (Integer.parseInt(taskInfo[1]) > tasks.size()) throw new DukeException();
+                    String oldString = tasks.get(Integer.parseInt(taskInfo[1]) - 1).toData();
                     tasks.get(Integer.parseInt(taskInfo[1]) - 1).markAsDone();
                     System.out.println("    ____________________________________________________________");
                     System.out.println("     Nice! I've marked this task as done:");
                     System.out.println("       [" + tasks.get(Integer.parseInt(taskInfo[1]) - 1).getStatusIcon() + "] " + tasks.get(Integer.parseInt(taskInfo[1]) - 1).description);
                     System.out.println("    ____________________________________________________________");
+                    String newString = tasks.get(Integer.parseInt(taskInfo[1]) - 1).toData();
+                    FileWriting writer = new FileWriting();
+                    writer.ModifyFile(oldString, newString);
                 } catch (DukeException e) {
                     System.out.println("    ____________________________________________________________");
                     e.incompleteFields(DukeException.ErrorType.DONE);
@@ -43,6 +50,8 @@ public class Duke {
                     System.out.println("       [T][✘] " + taskInfo[1]);
                     System.out.println("     Now you have " + tasks.size() + " task(s) in the list.");
                     System.out.println("    ____________________________________________________________");
+                    FileWriting writer = new FileWriting();
+                    writer.WriteFile(t.toData(), true);
                 } catch (DukeException e) {
                     System.out.println("    ____________________________________________________________");
                     e.incompleteFields(DukeException.ErrorType.TODO);
@@ -55,7 +64,6 @@ public class Duke {
                         throw new DukeException();
                     }
                     String[] dateInfo = taskInfo[1].split("/by ");
-
                     if ((dateInfo.length < 2) || (dateInfo[1].equals(" ")) || (dateInfo[0].equals("")))
                         throw new DukeException();
                     Deadline t = new Deadline(dateInfo[0], dateInfo[1]);
@@ -65,6 +73,8 @@ public class Duke {
                     System.out.println("       [D][✘] " + dateInfo[0] + "(by: " + dateInfo[1] + ")");
                     System.out.println("     Now you have " + tasks.size() + " task(s) in the list.");
                     System.out.println("    ____________________________________________________________");
+                    FileWriting writer = new FileWriting();
+                    writer.WriteFile(t.toData(), true);
                 } catch (DukeException e) {
                     System.out.println("    ____________________________________________________________");
                     e.incompleteFields(DukeException.ErrorType.DEADLINE);
@@ -84,6 +94,8 @@ public class Duke {
                     System.out.println("       [E][✘] " + dateInfo[0] + "(at: " + dateInfo[1] + ")");
                     System.out.println("     Now you have " + tasks.size() + " task(s) in the list.");
                     System.out.println("    ____________________________________________________________");
+                    FileWriting writer = new FileWriting();
+                    writer.WriteFile(t.toData(), true);
                 } catch (DukeException e) {
                     System.out.println("    ____________________________________________________________");
                     e.incompleteFields(DukeException.ErrorType.EVENT);

@@ -1,14 +1,25 @@
 public class Event extends Task {
 
-    protected String at;
-
-    public Event(String description, String at) {
+    public Event(String description, String date) {
         super(description);
-        this.at = at;
+        this.type = "E";
+        this.date = date;
+    }
+
+    public Event(String description, String date, boolean state) {
+        super(description);
+        this.type = "E";
+        this.date = date;
+        this.isDone = state;
     }
 
     @Override
     public String toString() {
-        return "[E]" + "[" + super.getStatusIcon() + "]" + super.toString() + "(at: " + at + ")";
+        return "[" + getType() + "]" + "[" + super.getStatusIcon() + "]" + super.getDescription() + "(at: " + getDate() + ")";
+    }
+
+    @Override
+    public String toData() {
+        return super.getType() + " | " + super.getStatus() + " | " + super.getDescription() + "| " + getDate();
     }
 }

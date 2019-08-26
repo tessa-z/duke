@@ -1,12 +1,14 @@
 public class Todo extends Task {
 
-
     public Todo(String description) {
         super(description);
+        this.type = "T";
     }
 
-    @Override
-    public String toString() {
-        return "[T]" + "[" + super.getStatusIcon() + "]" + super.toString();
+    public Todo(String description, boolean state) {
+        super(description);
+        this.isDone = state;
+        this.type = "T";
     }
+
 }
