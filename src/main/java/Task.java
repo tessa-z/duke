@@ -4,21 +4,17 @@ public class Task {
     protected String date;
     protected boolean isDone;
 
-    public Task(String description, String type) {
+    public Task(String description) {
         this.description = description;
-        this.type = type;
-        this.isDone = false;
-    }
-
-    public Task(String description, String type, String date) {
-        this.description = description;
-        this.type = type;
-        this.date = date;
         this.isDone = false;
     }
 
     public String getStatusIcon() {
         return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
+    }
+
+    public String toString() {
+        return this.description;
     }
 
     public void markAsDone() {
