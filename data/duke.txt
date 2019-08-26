@@ -1,6 +1,8 @@
-
-T | 0 | eat breakfast
-T | 0 | be happy
+T | 1 | eat breakfast
+T | 1 | be happy
 D | 0 | do project tasks | wed
 E | 1 | stay chill | all times
 T | 1 | have hope dude
+T | 0 | oops
+D | 1 | duke this | wed
+E | 1 | birthday | everyday

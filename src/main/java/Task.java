@@ -22,7 +22,7 @@ public class Task {
     }
 
     public String toString() {
-        return "[" + getType() + "]" + "[" + getStatusIcon() + "]" + getDescription();
+        return "[" + getType() + "]" + "[" + getStatusIcon() + "] " + getDescription();
     }
 
     public String toData() {

@@ -33,12 +33,16 @@ public class FileWriting extends FileManagement {
             String oldContent = "";
             String line = br.readLine();
 
+//            System.out.println(newString);
+
             while (line != null) {
                 oldContent = oldContent + line + System.lineSeparator();
                 line = br.readLine();
             }
             oldContent = oldContent.substring(0, oldContent.length() - 1);
+//            System.out.println(oldContent);
             String newContent = oldContent.replace(oldString, newString);
+//            System.out.println(newContent);
             FileWriting writer = new FileWriting();
             writer.WriteFile(newContent, false);
 

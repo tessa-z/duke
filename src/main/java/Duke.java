@@ -33,6 +33,7 @@ public class Duke {
                     System.out.println("       [" + tasks.get(Integer.parseInt(taskInfo[1]) - 1).getStatusIcon() + "] " + tasks.get(Integer.parseInt(taskInfo[1]) - 1).description);
                     System.out.println("    ____________________________________________________________");
                     String newString = tasks.get(Integer.parseInt(taskInfo[1]) - 1).toData();
+//                    System.out.println(newString);
                     FileWriting writer = new FileWriting();
                     writer.ModifyFile(oldString, newString);
                 } catch (DukeException e) {

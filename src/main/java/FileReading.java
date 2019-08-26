@@ -17,7 +17,7 @@ public class FileReading extends FileManagement {
             String line = br.readLine();
 
             while (line != null) {
-                String[] data = line.split("\\|");
+                String[] data = line.split("\\| ");
                 if (data[0].equals("T ")) {
                     Todo t = new Todo(data[2], data[1].contains("1"));
                     listContent.add(t);
