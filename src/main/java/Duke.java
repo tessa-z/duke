@@ -67,6 +67,8 @@ public class Duke {
                     String[] dateInfo = taskInfo[1].split("/by ");
                     if ((dateInfo.length < 2) || (dateInfo[1].equals(" ")) || (dateInfo[0].equals("")))
                         throw new DukeException();
+                    Date d = new Date();
+                    dateInfo[1] = d.convertDate(dateInfo[1]);
                     Deadline t = new Deadline(dateInfo[0], dateInfo[1]);
                     tasks.add(t);
                     System.out.println("    ____________________________________________________________");
@@ -88,6 +90,8 @@ public class Duke {
                     String[] dateInfo = taskInfo[1].split("/at ");
                     if ((dateInfo.length < 2) || (dateInfo[1].equals(" ")) || (dateInfo[0].equals("")))
                         throw new DukeException();
+                    Date d = new Date();
+                    dateInfo[1] = d.convertDate(dateInfo[1]);
                     Event t = new Event(dateInfo[0], dateInfo[1]);
                     tasks.add(t);
                     System.out.println("    ____________________________________________________________");
