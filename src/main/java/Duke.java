@@ -1,4 +1,3 @@
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -69,6 +68,7 @@ public class Duke {
                         throw new DukeException();
                     Date d = new Date();
                     dateInfo[1] = d.convertDate(dateInfo[1]);
+                    if (dateInfo[1].equals("null")) { throw new DukeException(); }
                     Deadline t = new Deadline(dateInfo[0], dateInfo[1]);
                     tasks.add(t);
                     System.out.println("    ____________________________________________________________");
@@ -92,6 +92,7 @@ public class Duke {
                         throw new DukeException();
                     Date d = new Date();
                     dateInfo[1] = d.convertDate(dateInfo[1]);
+                    if (dateInfo[1].equals("null")) { throw new DukeException(); }
                     Event t = new Event(dateInfo[0], dateInfo[1]);
                     tasks.add(t);
                     System.out.println("    ____________________________________________________________");

@@ -3,8 +3,16 @@ public class Date {
     public String convertDate(String dateString) {
         String[] dateTime = dateString.split(" ");
         String[] date = dateTime[0].split("/");
-        return getDay(date[0]) + " of " + getMonth(Integer.parseInt(date[1])) + " "
-                + date[2] + ", " + getTime(dateTime[1]);
+
+        if (date.length == 3) {
+            if (dateTime.length == 1) {
+                return getDay(date[0]) + " of " + getMonth(Integer.parseInt(date[1])) + " "
+                        + date[2];
+            } else if (dateTime.length == 2) {
+                return getDay(date[0]) + " of " + getMonth(Integer.parseInt(date[1])) + " "
+                        + date[2] + ", " + getTime(dateTime[1]);
+            } else return "null";
+        } else return "null";
     }
 
     public String getDay(String day) {
@@ -24,21 +32,34 @@ public class Date {
     }
 
     public String getMonth(int month) {
-        switch(month) {
-            case 1: return "January";
-            case 2: return "February";
-            case 3: return "March";
-            case 4: return "April";
-            case 5: return "May";
-            case 6: return "June";
-            case 7: return "July";
-            case 8: return "August";
-            case 9: return "September";
-            case 10: return "October";
-            case 11: return "November";
-            case 12: return "December";
-            default: return null;
-        }
+            switch (month) {
+                case 1:
+                    return "January";
+                case 2:
+                    return "February";
+                case 3:
+                    return "March";
+                case 4:
+                    return "April";
+                case 5:
+                    return "May";
+                case 6:
+                    return "June";
+                case 7:
+                    return "July";
+                case 8:
+                    return "August";
+                case 9:
+                    return "September";
+                case 10:
+                    return "October";
+                case 11:
+                    return "November";
+                case 12:
+                    return "December";
+                default:
+                    return "null";
+            }
     }
 
     public String getTime(String time) {
@@ -48,19 +69,19 @@ public class Date {
         String indicator = null;
 
         if ((time.charAt(0) == '0') || (Integer.parseInt(time.substring(0,2)) <= 12)) {
-            System.out.println(time.substring(0,2));
+//            System.out.println(time.substring(0,2));
             if (time.charAt(1) == '0') {
                 hour = "12";
                 minutes = time.substring(2);
             } else {
                 hour = String.valueOf(time.charAt(1));
-                System.out.println(hour);
+//                System.out.println(hour);
                 minutes = time.substring(2);
             }
             indicator = "am";
         } else {
             hour = Integer.toString(Integer.parseInt(time.substring(0,2)) - 12);
-            System.out.println(hour);
+//            System.out.println(hour);
             minutes = time.substring(2);
             indicator = "pm";
         }
