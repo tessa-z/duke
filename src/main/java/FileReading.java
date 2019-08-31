@@ -30,13 +30,18 @@ public class FileReading extends FileManagement {
                 }
                 line = br.readLine();
             }
-
             return listContent;
 
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        } finally {
+            try {
+                br.close();
+                fr.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
     }
 }
