@@ -34,30 +34,13 @@ public class Duke {
                     String newString = tasks.get(Integer.parseInt(taskInfo[1]) - 1).toData();
 //                    System.out.println(newString);
                     FileWriting writer = new FileWriting();
-                    writer.AddItemToFile(oldString, newString);
+                    writer.ModifyFile(oldString, newString);
                 } catch (DukeException e) {
                     System.out.println("    ____________________________________________________________");
                     e.incompleteFields(DukeException.ErrorType.DONE);
                     System.out.println("    ____________________________________________________________");
                 }
-            } else if (taskInfo[0].equals("delete")) {
-                try {
-                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException();
-                    if (Integer.parseInt(taskInfo[1]) > tasks.size()) throw new DukeException();
-                    String oldString = tasks.get(Integer.parseInt(taskInfo[1]) - 1).toData();
-                    System.out.println("    ____________________________________________________________");
-                    System.out.println("     Noted. I've removed this task:");
-                    System.out.println("       [" + tasks.get(Integer.parseInt(taskInfo[1]) - 1).getStatusIcon() + "] " + tasks.get(Integer.parseInt(taskInfo[1]) - 1).description);
-                    System.out.println("    ____________________________________________________________");
-                    String newString = tasks.get(Integer.parseInt(taskInfo[1]) - 1).toData();
-                    FileWriting writer = new FileWriting();
-                    writer.RemoveItemFromFile(oldString);
-                } catch (DukeException e) {
-                    System.out.println("    ____________________________________________________________");
-                    e.incompleteFields(DukeException.ErrorType.DONE);
-                    System.out.println("    ____________________________________________________________");
-                }
-            }  else if (taskInfo[0].equals("todo")) {
+            } else if (taskInfo[0].equals("todo")) {
                 try {
                     if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException();
                     Todo t = new Todo(taskInfo[1]);
