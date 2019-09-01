@@ -49,6 +49,7 @@ public class Duke {
                     System.out.println("     Noted. I've removed this task:");
                     System.out.println("       " + tasks.get(Integer.parseInt(taskInfo[1]) - 1).toString());
                     System.out.println("    ____________________________________________________________");
+                    String newString = tasks.get(Integer.parseInt(taskInfo[1]) - 1).toData();
                     FileWriting writer = new FileWriting();
                     writer.RemoveItemFromFile(oldString);
                 } catch (DukeException e) {
@@ -85,7 +86,7 @@ public class Duke {
                     e.incompleteFields(DukeException.ErrorType.FIND);
                     System.out.println("    ____________________________________________________________");
                 }
-            } else if (taskInfo[0].equals("todo")) {
+            }  else if (taskInfo[0].equals("todo")) {
                 try {
                     if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException();
                     Todo t = new Todo(taskInfo[1]);

@@ -7,20 +7,11 @@ T | 0 | oops
 D | 1 | duke this | wed
 E | 1 | birthday | everyday
 D | 0 | assignment | 12/02/99 0900
-D | 0 | be born | 12th of February 1999, 4.19am
-D | 0 | be born | 12th of February 1999, 4.19am
-D | 0 | be born | 12th of February 1999, 4.19am
 D | 1 | be born | 12th of February 1999, 2.19pm
 D | 1 | be born | 12th of February 1999, 2.19pm
-D | 1 | be born | 22nd of March 2020, 12.00am
 E | 0 | annivesary | 0
 E | 1 | bread | 13th of February 1997, 8.00pm
-T | 0 | helllooo
-
 D | 0 | sing song | 12th of February 2019
-
 D | 0 | sing song | 12th of February 2019, 9.00am
 D | 0 | sing | 12th of February 1999, 9.00am
-
 E | 0 | singing | 12th of February 1999
-T | 0 | lots of work help
