@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
@@ -29,15 +30,59 @@ public class Duke {
                     tasks.get(Integer.parseInt(taskInfo[1]) - 1).markAsDone();
                     System.out.println("    ____________________________________________________________");
                     System.out.println("     Nice! I've marked this task as done:");
-                    System.out.println("       [" + tasks.get(Integer.parseInt(taskInfo[1]) - 1).getStatusIcon() + "] " + tasks.get(Integer.parseInt(taskInfo[1]) - 1).description);
+                    System.out.println("       " + tasks.get(Integer.parseInt(taskInfo[1]) - 1).toString());
                     System.out.println("    ____________________________________________________________");
                     String newString = tasks.get(Integer.parseInt(taskInfo[1]) - 1).toData();
-//                    System.out.println(newString);
                     FileWriting writer = new FileWriting();
-                    writer.ModifyFile(oldString, newString);
+                    writer.AddItemToFile(oldString, newString);
                 } catch (DukeException e) {
                     System.out.println("    ____________________________________________________________");
                     e.incompleteFields(DukeException.ErrorType.DONE);
+                    System.out.println("    ____________________________________________________________");
+                }
+            } else if (taskInfo[0].equals("delete")) {
+                try {
+                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException();
+                    if (Integer.parseInt(taskInfo[1]) > tasks.size()) throw new DukeException();
+                    String oldString = tasks.get(Integer.parseInt(taskInfo[1]) - 1).toData();
+                    System.out.println("    ____________________________________________________________");
+                    System.out.println("     Noted. I've removed this task:");
+                    System.out.println("       " + tasks.get(Integer.parseInt(taskInfo[1]) - 1).toString());
+                    System.out.println("    ____________________________________________________________");
+                    FileWriting writer = new FileWriting();
+                    writer.RemoveItemFromFile(oldString);
+                } catch (DukeException e) {
+                    System.out.println("    ____________________________________________________________");
+                    e.incompleteFields(DukeException.ErrorType.DELETE);
+                    System.out.println("    ____________________________________________________________");
+                }
+            } else if (taskInfo[0].equals("find")) {
+                try {
+                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException();
+                    ArrayList<Task> foundItems = new ArrayList<>();
+                    for (Task t : tasks) {
+                        String[] words = t.getDescription().split(" ");
+                        if (Arrays.asList(words).contains(taskInfo[1])) {
+                            foundItems.add(t);
+                        }
+                    }
+                    if (foundItems.size() > 0) {
+                        System.out.println("    ____________________________________________________________");
+                        System.out.println("     Here are the matching tasks in your list:");
+                        int count = 0;
+                        for (Task task : foundItems) {
+                            count++;
+                            System.out.println("     " + count + ". " + task.toString());
+                        }
+                        System.out.println("    ____________________________________________________________");
+                    } else {
+                        System.out.println("    ____________________________________________________________");
+                        System.out.println("     No task matching description. Try another keyword!");
+                        System.out.println("    ____________________________________________________________");
+                    }
+                } catch (DukeException e) {
+                    System.out.println("    ____________________________________________________________");
+                    e.incompleteFields(DukeException.ErrorType.FIND);
                     System.out.println("    ____________________________________________________________");
                 }
             } else if (taskInfo[0].equals("todo")) {
@@ -137,5 +182,4 @@ public class Duke {
 
     }
 }
-
 

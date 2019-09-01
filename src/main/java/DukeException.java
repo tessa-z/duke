@@ -16,7 +16,8 @@ public class DukeException extends Exception {
         TODO,
         DEADLINE,
         EVENT,
-//        DATE
+        DELETE,
+        FIND
     }
 
     //if incomplete fields for task commands
@@ -26,9 +27,9 @@ public class DukeException extends Exception {
             case TODO: System.out.println("     ☹ WOT? Expected format: \"todo [description of task]\""); break;
             case DEADLINE: System.out.println("     ☹ WOT? Expected format: \"deadline [description of task] /by\n      DD/MM/YYYY HHMM\""); break;
             case EVENT: System.out.println("     ☹ WOT? Expected format: \"event [description of event] /at\n      DD/MM/YYYY HHMM"); break;
-//            case DATE: System.out.println("     ☹ WOT? Please enter the date and time details in this \n     format: DD/MM/YYYY HHMM"); break;
+//            case DELETE:
+//            case FIND:
         }
     }
 
 }
-
