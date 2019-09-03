@@ -14,7 +14,7 @@ public class Parser {
             return new DeleteCommand()  ;
         } else if (taskInfo[0].equals("find")) {
             //create a FindCommand
-            return new FindCommand();
+            return new FindCommand(taskInfo[1]);
         } else {
             if (taskInfo[0].equals("todo")) {
                 //parse and throw into AddCommand

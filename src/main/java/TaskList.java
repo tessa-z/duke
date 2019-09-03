@@ -2,7 +2,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TaskList {
 
@@ -14,6 +16,9 @@ public class TaskList {
         tasks = list;
     }
 
+    public int getSize() { return tasks.size(); }
+
+
     public void AddItem(Task t) {
         tasks.add(t);
     }
@@ -22,7 +27,16 @@ public class TaskList {
         tasks.remove(index-1);
     }
 
-    public int getSize() { return tasks.size(); }
+    public ArrayList<Task> FindItem(String phrase) {
+        ArrayList<Task> foundItems = new ArrayList<>();
+        for (Task t : tasks) {
+            String[] words = t.getDescription().split(" ");
+            if (Arrays.asList(words).contains(phrase)) {
+                foundItems.add(t);
+            }
+        }
+        return foundItems;
+    }
 
 
 }

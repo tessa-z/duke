@@ -1,7 +1,5 @@
 public class AddCommand extends Command {
 
-    protected Task task;
-
     public AddCommand(Task t) {
         task = t;
     }
