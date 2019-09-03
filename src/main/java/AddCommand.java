@@ -9,7 +9,7 @@ public class AddCommand extends Command {
         //ask ui to print something
         //add task to tasks
         //ask storage to write to file
-        tasks.AddItem(task);
+        tasks.addItem(task);
         storage.writeFile(task.toData(), true);
         ui.showAdded(task, tasks);
     }

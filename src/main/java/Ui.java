@@ -24,14 +24,14 @@ public class Ui {
         showLine();
     }
 
-    public void done(Task t) {
+    public void showDone(Task t) {
         showLine();
         System.out.println("     Nice! I've marked this task as done:");
         System.out.println("       " + t.toString());
         showLine();
     }
 
-    public void delete(Task t) {
+    public void showDeleted(Task t) {
         showLine();
         System.out.println("     Noted. I've removed this task:");
         System.out.println("       " + t.toString());
@@ -39,7 +39,7 @@ public class Ui {
 
     }
 
-    public void find(ArrayList<Task> foundItems) {
+    public void showFound(ArrayList<Task> foundItems) {
         showLine();
         if (foundItems.size() > 0) {
             System.out.println("     Here are the matching tasks in your list:");
@@ -62,14 +62,14 @@ public class Ui {
         showLine();
     }
 
-    public void list(Task t, TaskList tasks) {
+    public void showList(TaskList tasks) {
         showLine();
         System.out.println("     Here are the tasks in your list:");
         int count = 0;
-//        for (Task task : tasks) {
-//            ++count;
-//            System.out.println("     " + count + "." + task.toString());
-//        }
+        for (Task task : tasks.getList()) {
+            ++count;
+            System.out.println("     " + count + "." + task.toString());
+        }
         showLine();
     }
 

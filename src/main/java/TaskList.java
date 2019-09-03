@@ -1,7 +1,3 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,24 +6,29 @@ public class TaskList {
 
     protected ArrayList<Task> tasks;
 
-    TaskList() {}
-
     TaskList(ArrayList<Task> list) {
         tasks = list;
     }
 
     public int getSize() { return tasks.size(); }
 
+    public ArrayList<Task> getList() { return tasks; }
 
-    public void AddItem(Task t) {
+    //returns a Task object
+    public Task getTaskItem(int index) { return tasks.get(index); }
+
+    //for files
+    public String getItemData(int index) { return tasks.get(index).toData(); }
+
+    public void addItem(Task t) {
         tasks.add(t);
     }
 
-    public void DeleteItem(int index) {
-        tasks.remove(index-1);
+    public void deleteItem(int index) {
+        tasks.remove(index);
     }
 
-    public ArrayList<Task> FindItem(String phrase) {
+    public ArrayList<Task> findItem(String phrase) {
         ArrayList<Task> foundItems = new ArrayList<>();
         for (Task t : tasks) {
             String[] words = t.getDescription().split(" ");

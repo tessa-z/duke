@@ -11,10 +11,12 @@ public class Parser {
             return new DoneCommand();
         } else if (taskInfo[0].equals("delete")) {
             //create a DeleteCommand
-            return new DeleteCommand()  ;
+            return new DeleteCommand(Integer.parseInt(taskInfo[1]));
         } else if (taskInfo[0].equals("find")) {
             //create a FindCommand
             return new FindCommand(taskInfo[1]);
+        } else if (taskInfo[0].equals("list")) {
+            return new ListCommand();
         } else {
             if (taskInfo[0].equals("todo")) {
                 //parse and throw into AddCommand
