@@ -1,11 +1,8 @@
 /**Creates a Command object after extracting information needed**/
 public class Parser {
 
-    protected String[] taskInfo;
-    protected String[] dateInfo;
-
-    public Command parseTask(String input) {
-        taskInfo = input.split(" ", 2);
+    public static Command parse(String input) {
+        String[] taskInfo = input.split(" ", 2);
         if (taskInfo[0].equals("bye")) {
             //create an ExitCommand
             return new ExitCommand();
@@ -25,12 +22,16 @@ public class Parser {
                 return new AddCommand(t);
             } else if (taskInfo[0].equals("deadline")) {
                 //parse date
-                parseDate("deadline");
+                String[] dateInfo = parseDate("deadline", taskInfo);
+                Date d = new Date();
+                dateInfo[1] = d.convertDate(dateInfo[1]);
                 //create deadline object
                 Deadline t = new Deadline(dateInfo[0], dateInfo[1]);
                 return new AddCommand(t);
             } else if (taskInfo[0].equals("event")) {
-                parseDate("event");
+                String[] dateInfo = parseDate("event", taskInfo);
+                Date d = new Date();
+                dateInfo[1] = d.convertDate(dateInfo[1]);
                 //create event object
                 Event t = new Event(dateInfo[0], dateInfo[1]);
                 return new AddCommand(t);
@@ -41,7 +42,8 @@ public class Parser {
         return null;
     }
 
-    public void parseDate(String type) {
+    public static String[] parseDate(String type, String[] taskInfo) {
+        String[] dateInfo = null;
         if (type.equals("deadline")) {
             dateInfo = taskInfo[1].split("/by ");
             //tell AddCommand to go add itself
@@ -51,5 +53,6 @@ public class Parser {
         } else {
             //throw some error
         }
+        return dateInfo;
     }
 }

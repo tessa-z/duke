@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Storage {
 
@@ -9,7 +10,7 @@ public class Storage {
         FILE_PATH = filePath;
     }
 
-    public ArrayList<Task> LoadFile() {
+    public ArrayList<Task> loadFile() {
         File file = new File(FILE_PATH);
         FileReader fr = null;
         BufferedReader br = null;
@@ -48,7 +49,7 @@ public class Storage {
         }
     }
 
-    public void WriteFile(String s, boolean append) {
+    public void writeFile(String s, boolean append) {
         File file = new File(FILE_PATH);
         FileWriter fw = null;
         BufferedWriter bw = null;
@@ -70,79 +71,76 @@ public class Storage {
     }
 
     public void FindItemInFile(String searchPhrase) {
-        ArrayList<Task> foundItems = new ArrayList<>();
+//        ArrayList<Task> foundItems = new ArrayList<>();
 //        for (Task t : tasks) {
 //            String[] words = t.getDescription().split(" ");
 //            if (Arrays.asList(words).contains(taskInfo[1])) {
 //                foundItems.add(t);
 //            }
 //        }
-
     }
 
-//    public void AddItemToFile(String oldString, String newString) {
-//        File file = new File(Storage.FILE_PATH);
-//        FileReader fr = null;
-//        BufferedReader br = null;
-//        try {
-//            fr = new FileReader(file);
-//            br = new BufferedReader(fr);
-//            String oldContent = "";
-//            String line = br.readLine();
-//
-//            while (line != null) {
-//                oldContent = oldContent + line + System.lineSeparator();
-//                line = br.readLine();
-//            }
-//            oldContent = oldContent.substring(0, oldContent.length() - 1);
-//            String newContent = oldContent.replace(oldString, newString);
-//            FileWriting writer = new FileWriting();
-//            writer.WriteFile(newContent, false);
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                br.close();
-//                fr.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-//
-//    public void DeleteItemFromFile(String oldString) {
-//        File file = new File(Storage.FILE_PATH);
-//        FileReader fr = null;
-//        BufferedReader br = null;
-//        try {
-//            fr = new FileReader(file);
-//            br = new BufferedReader(fr);
-//            String oldContent = "";
-//            String line = br.readLine();
-//
-//
-//            while (line != null) {
-//                oldContent = oldContent + line + System.lineSeparator();
-//                line = br.readLine();
-//            }
-//            oldContent = oldContent.substring(0, oldContent.length() - 1);
-//            String newContent = oldContent.replace(oldString, "");
-//            FileWriting writer = new FileWriting();
-//            writer.WriteFile(newContent, false);
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                br.close();
-//                fr.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
+    public void MarkDoneInFile(String oldString, String newString) {
+        File file = new File(Storage.FILE_PATH);
+        FileReader fr = null;
+        BufferedReader br = null;
+        try {
+            fr = new FileReader(file);
+            br = new BufferedReader(fr);
+            String oldContent = "";
+            String line = br.readLine();
+
+            while (line != null) {
+                oldContent = oldContent + line + System.lineSeparator();
+                line = br.readLine();
+            }
+            oldContent = oldContent.substring(0, oldContent.length() - 1);
+            String newContent = oldContent.replace(oldString, newString);
+            FileWriting writer = new FileWriting();
+            writer.WriteFile(newContent, false);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                br.close();
+                fr.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void DeleteItemFromFile(String oldString) {
+        File file = new File(Storage.FILE_PATH);
+        FileReader fr = null;
+        BufferedReader br = null;
+        try {
+            fr = new FileReader(file);
+            br = new BufferedReader(fr);
+            String oldContent = "";
+            String line = br.readLine();
 
 
+            while (line != null) {
+                oldContent = oldContent + line + System.lineSeparator();
+                line = br.readLine();
+            }
+            oldContent = oldContent.substring(0, oldContent.length() - 1);
+            String newContent = oldContent.replace(oldString, "");
+            FileWriting writer = new FileWriting();
+            writer.WriteFile(newContent, false);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                br.close();
+                fr.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }

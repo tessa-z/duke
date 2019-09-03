@@ -5,7 +5,12 @@ public class ExitCommand extends Command {
         //ask ui to print something
         //ask tasks to store the thing in arraylist
         //ask storage to write to file
+        ui.goodBye();
+        isExit();
+    }
 
-
+    @Override
+    public boolean isExit() {
+        return true;
     }
 }

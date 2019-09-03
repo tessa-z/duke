@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 public class TaskList {
 
-    public ArrayList<Task> tasks;
+    protected ArrayList<Task> tasks;
+
+    TaskList() {}
 
     TaskList(ArrayList<Task> list) {
         tasks = list;
@@ -19,6 +21,8 @@ public class TaskList {
     public void DeleteItem(int index) {
         tasks.remove(index-1);
     }
+
+    public int getSize() { return tasks.size(); }
 
 
 }

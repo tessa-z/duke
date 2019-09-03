@@ -68,7 +68,7 @@ public class Date {
         String minutes = null;
         String indicator = null;
 
-        if ((time.charAt(0) == '0') || (Integer.parseInt(time.substring(0,2)) <= 12)) {
+        if ((time.charAt(0) == '0') || (Integer.parseInt(time.substring(0,2)) < 12)) {
 //            System.out.println(time.substring(0,2));
             if (time.charAt(1) == '0') {
                 hour = "12";
@@ -80,9 +80,14 @@ public class Date {
             }
             indicator = "am";
         } else {
-            hour = Integer.toString(Integer.parseInt(time.substring(0,2)) - 12);
-//            System.out.println(hour);
-            minutes = time.substring(2);
+            if (Integer.parseInt(time.substring(0,2)) == 12) {
+                hour = "12";
+                minutes = time.substring(2);
+            } else {
+                hour = Integer.toString(Integer.parseInt(time.substring(0, 2)) - 12);
+                //            System.out.println(hour);
+                minutes = time.substring(2);
+            }
             indicator = "pm";
         }
         return hour + "." + minutes + indicator;
