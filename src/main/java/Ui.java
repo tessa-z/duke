@@ -14,7 +14,13 @@ public class Ui {
 
     public void greet() {
         showLine();
-        System.out.println("     Hello! I'm Duke\n     What can I do for you?");
+        System.out.println(
+                        "     Hello! I'm" + "     ,-.      ,       \n" +
+                        "                    |  \\     |       \n" +
+                        "                    |  | . . | , ,-. \n" +
+                        "                    |  / | | |<  |-' \n" +
+                        "                    `-'  `-` ' ` `-' \n" +
+                        "                                         What can I do for you?");
         showLine();
     }
 
