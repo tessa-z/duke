@@ -49,7 +49,6 @@ public class Duke {
                     System.out.println("     Noted. I've removed this task:");
                     System.out.println("       " + tasks.get(Integer.parseInt(taskInfo[1]) - 1).toString());
                     System.out.println("    ____________________________________________________________");
-                    String newString = tasks.get(Integer.parseInt(taskInfo[1]) - 1).toData();
                     FileWriting writer = new FileWriting();
                     writer.RemoveItemFromFile(oldString);
                 } catch (DukeException e) {
@@ -164,7 +163,6 @@ public class Duke {
                         System.out.println("     " + count + "." + task.toString());
                     }
                     System.out.println("    ____________________________________________________________");
-
                 } catch (DukeException e){
                     System.out.println("    ____________________________________________________________");
                     e.listEmpty();

@@ -1,5 +1,4 @@
 public class DukeException extends Exception {
-    DukeException() {}
 
     //if list command but list is empty
     public void listEmpty() {
