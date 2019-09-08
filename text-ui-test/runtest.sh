@@ -23,7 +23,8 @@ fi
 java -classpath /home/tessa/Documents/CS2113/duke/bin Duke < input.txt > ACTUAL.TXT
 
 # compare the output to the expected output
-diff ACTUAL.TXT EXPECTED.TXT
+#diff ACTUAL.TXT EXPECTED.TXT
+diff <(tail -n +10 ACTUAL.TXT | head -n -4) <(tail -n +10 EXPECTED.TXT | head -n -4)
 if [ $? -eq 0 ]
 then
     echo "Test result: PASSED"
