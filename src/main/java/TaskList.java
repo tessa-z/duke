@@ -20,6 +20,15 @@ public class TaskList {
     //for files
     public String getItemData(int index) { return tasks.get(index).toData(); }
 
+    public String getArrayData() {
+        String arrayString = "";
+        for (Task task : tasks) {
+            arrayString = arrayString + task.toData() + System.lineSeparator();
+        }
+        arrayString = arrayString.substring(0, arrayString.length() - 1);
+        return arrayString;
+    }
+
     public void addItem(Task t) {
         tasks.add(t);
     }
@@ -27,6 +36,8 @@ public class TaskList {
     public void deleteItem(int index) {
         tasks.remove(index);
     }
+
+    public void markItemDone(int index) { tasks.get(index).markAsDone(); }
 
     public ArrayList<Task> findItem(String phrase) {
         ArrayList<Task> foundItems = new ArrayList<>();

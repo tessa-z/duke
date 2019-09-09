@@ -10,7 +10,7 @@ public class Parser {
             } else if (taskInfo[0].equals("done")) {
                 if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException(DukeException.ErrorType.MISSING_INDEX);
                 //create a DoneCommand object
-                return new DoneCommand();
+                return new DoneCommand(Integer.parseInt(taskInfo[1]));
             } else if (taskInfo[0].equals("delete")) {
                 if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException(DukeException.ErrorType.MISSING_INDEX);
                 //create a DeleteCommand
