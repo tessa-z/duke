@@ -1,4 +1,7 @@
-/**Creates a Command object after extracting information needed**/
+/**
+ * Creates a Command object after extracting information needed
+ * @author Zhang Yue Han
+ */
 public class Parser {
 
     public static Command parse(String input) {

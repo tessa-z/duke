@@ -21,9 +21,9 @@ public class DeleteCommand extends Command {
     /**
      * Deletes task item from the task list, removes the specified task from hard disk
      * and prints feedback to the user.
-     * @param ui the Ui object used to display information to the user
-     * @param tasks the TaskList object which contains the task array list holding the task info
-     * @param storage the Storage object which is used to remove specified task to file
+     * @param ui Ui object used to display information to the user
+     * @param tasks TaskList object which contains the task array list holding the task info
+     * @param storage Storage object which is used to remove specified task to file
      */
     @Override
     public void execute(Ui ui, TaskList tasks, Storage storage) {

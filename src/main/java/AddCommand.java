@@ -7,7 +7,7 @@ public class AddCommand extends Command {
 
     /**
      * Assigns the task object to take on the values in input from user.
-     * @param t the task object to be processed
+     * @param t task object to be processed
      */
     AddCommand(Task t) {
         task = t;
@@ -16,9 +16,9 @@ public class AddCommand extends Command {
     /**
      * Adds task item to the task list, writes the new task to hard disk
      * and prints feedback to the user.
-     * @param ui the Ui object used to display information to the user
-     * @param tasks the TaskList object which contains the task array list holding the task info
-     * @param storage the Storage object which is used to write new task to file
+     * @param ui Ui object used to display information to the user
+     * @param tasks TaskList object which contains the task array list holding the task info
+     * @param storage Storage object which is used to write new task to file
      */
     @Override
     public void execute(Ui ui, TaskList tasks, Storage storage) {
