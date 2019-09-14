@@ -6,7 +6,6 @@ public class BadCommand extends Command {
         //ask tasks to store the thing in arraylist
         //ask storage to write to file
         isExit();
-
     }
 
 }

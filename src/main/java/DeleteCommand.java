@@ -30,9 +30,16 @@ public class DeleteCommand extends Command {
         //ask ui to print something
         //ask tasks to store the thing in arraylist
         //ask storage to write to file
-        ui.showDeleted(tasks.getTaskItem(index));
-        storage.deleteItemFromFile(tasks.getItemData(index));
-        tasks.deleteItem(index);
+        try {
+            if (index > tasks.getSize() || tasks.getList().isEmpty()) {
+                throw new DukeException(DukeException.ErrorType.INDEX_EXCEEDED);
+            }
+            ui.showDeleted(tasks.getTaskItem(index));
+            storage.deleteItemFromFile(tasks.getItemData(index));
+            tasks.deleteItem(index);
+        } catch (DukeException e) {
+            e.showError();
+        }
     }
 
 }

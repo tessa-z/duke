@@ -1,20 +1,35 @@
+/**
+ * Represents a date object that can reformat itself.
+ * @author Zhang Yue Han
+ */
 public class Date {
 
+    /**
+     * Pieces together the date and time segments and returns the date in a more readable
+     * format
+     * @param dateString user input directly from CLI
+     * @return date in the form 23rd of January 2019, 3.00pm
+     */
     public String convertDate(String dateString) {
         String[] dateTime = dateString.split(" ");
         String[] date = dateTime[0].split("/");
 
         if (date.length == 3) {
-            if (dateTime.length == 1) {
+            if (dateTime.length == 1) { //user only input date
                 return getDay(date[0]) + " of " + getMonth(Integer.parseInt(date[1])) + " "
                         + date[2];
-            } else if (dateTime.length == 2) {
+            } else if (dateTime.length == 2) { //user input date and time
                 return getDay(date[0]) + " of " + getMonth(Integer.parseInt(date[1])) + " "
                         + date[2] + ", " + getTime(dateTime[1]);
             } else return "null";
         } else return "null";
     }
 
+    /**
+     * Checks the date input and assign an appropriate suffix ie "st", "nd" etc to the date
+     * @param day user input DD e.g. 23
+     * @return DD + date suffix e.g. 23rd
+     */
     public String getDay(String day) {
         if (day.charAt(0) != '1') {
             if (day.charAt(1) == '1') {
@@ -31,6 +46,12 @@ public class Date {
         }
     }
 
+    /**
+     * Obtains the month from an integer input
+     * @param month user input MM; leading 0s are removed during integer parsing in convertDate
+     *              method
+     * @return the name of the month in english
+     */
     public String getMonth(int month) {
             switch (month) {
                 case 1:
@@ -62,6 +83,11 @@ public class Date {
             }
     }
 
+    /**
+     * Converts the date from 24h format to English form h.mm(am/pm)
+     * @param time time segment from user input
+     * @return formatted time e.g. 3.45pm
+     */
     public String getTime(String time) {
 
         String hour = null;
@@ -69,13 +95,11 @@ public class Date {
         String indicator = null;
 
         if ((time.charAt(0) == '0') || (Integer.parseInt(time.substring(0,2)) < 12)) {
-//            System.out.println(time.substring(0,2));
             if (time.charAt(1) == '0') {
                 hour = "12";
                 minutes = time.substring(2);
             } else {
                 hour = String.valueOf(time.charAt(1));
-//                System.out.println(hour);
                 minutes = time.substring(2);
             }
             indicator = "am";
@@ -85,7 +109,6 @@ public class Date {
                 minutes = time.substring(2);
             } else {
                 hour = Integer.toString(Integer.parseInt(time.substring(0, 2)) - 12);
-                //            System.out.println(hour);
                 minutes = time.substring(2);
             }
             indicator = "pm";

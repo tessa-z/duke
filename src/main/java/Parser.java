@@ -11,15 +11,15 @@ public class Parser {
                 //create an ExitCommand
                 return new ExitCommand();
             } else if (taskInfo[0].equals("done")) {
-                if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException(DukeException.ErrorType.MISSING_INDEX);
+                if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException(DukeException.ErrorType.INDEX_MISSING);
                 //create a DoneCommand object
                 return new DoneCommand(Integer.parseInt(taskInfo[1]));
             } else if (taskInfo[0].equals("delete")) {
-                if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException(DukeException.ErrorType.MISSING_INDEX);
+                if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException(DukeException.ErrorType.INDEX_MISSING);
                 //create a DeleteCommand
                 return new DeleteCommand(Integer.parseInt(taskInfo[1]));
             } else if (taskInfo[0].equals("find")) {
-                if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException(DukeException.ErrorType.MISSING_INDEX);
+                if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException(DukeException.ErrorType.SEARCHPHRASE_MISSING);
                 //create a FindCommand
                 return new FindCommand(taskInfo[1]);
             } else if (taskInfo[0].equals("list")) {
@@ -27,6 +27,7 @@ public class Parser {
             } else {
                 if (taskInfo[0].equals("todo")) {
                     //parse and throw into AddCommand
+                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) throw new DukeException(DukeException.ErrorType.FORMAT_TODO);
                     Todo t = new Todo(taskInfo[1]);
                     return new AddCommand(t);
                 } else if (taskInfo[0].equals("deadline")) {
@@ -34,6 +35,7 @@ public class Parser {
                     String[] dateInfo = parseDate("deadline", taskInfo);
                     Date d = new Date();
                     dateInfo[1] = d.convertDate(dateInfo[1]);
+                    if (dateInfo[1].equals("null")) { throw new DukeException(DukeException.ErrorType.FORMAT_DEADLINE); }
                     //create deadline object
                     Deadline t = new Deadline(dateInfo[0], dateInfo[1]);
                     return new AddCommand(t);
@@ -41,6 +43,7 @@ public class Parser {
                     String[] dateInfo = parseDate("event", taskInfo);
                     Date d = new Date();
                     dateInfo[1] = d.convertDate(dateInfo[1]);
+                    if (dateInfo[1].equals("null")) { throw new DukeException(DukeException.ErrorType.FORMAT_EVENT); }
                     //create event object
                     Event t = new Event(dateInfo[0], dateInfo[1]);
                     return new AddCommand(t);

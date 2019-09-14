@@ -7,11 +7,12 @@ public class DukeException extends Exception {
         LIST_EMPTY,
         COMMAND_EMPTY,
         COMMAND_INVALID,
-        MISSING_INDEX,
-        TODO_FORMAT,
-        DEADLINE_FORMAT,
-        EVENT_FORMAT,
-        FIND
+        INDEX_MISSING,
+        INDEX_EXCEEDED,
+        SEARCHPHRASE_MISSING,
+        FORMAT_TODO,
+        FORMAT_DEADLINE,
+        FORMAT_EVENT,
     }
 
     DukeException(ErrorType e) {
@@ -21,23 +22,15 @@ public class DukeException extends Exception {
     //if incomplete fields for task commands
     public void showError() {
         switch(error) {
-            case LIST_EMPTY: System.out.println("     ☹ ERROR: Task list is empty. Please input a task before\n       viewing list."); break;
-            case COMMAND_EMPTY: System.out.println("     ☹ ERROR Command cannot be empty, please input a command."); break;
-            case COMMAND_INVALID: System.out.println("     ☹ ERROR I don't understand what you have entered."); break;
-            case MISSING_INDEX: System.out.println("     ☹ ERROR Missing task index. Please specify the index of the task."); break;
-            case TODO_FORMAT: System.out.println("     ☹ ERROR Expected format: \"todo [description of task]\""); break;
-            case DEADLINE_FORMAT: System.out.println("     ☹ ERROR Expected format: \"deadline [description of task] /by\n      DD/MM/YYYY HHMM\""); break;
-            case EVENT_FORMAT: System.out.println("     ☹ ERROR Expected format: \"event [description of event] /at\n      DD/MM/YYYY HHMM"); break;
+            case LIST_EMPTY: System.out.println("     ☹ OOPS: Task list is empty. Please input a task before\n             viewing list."); break;
+            case COMMAND_EMPTY: System.out.println("     ☹ OOPS: Command cannot be empty, please input a command."); break;
+            case COMMAND_INVALID: System.out.println("     ☹ OOPS: I don't understand what you have entered."); break;
+            case INDEX_MISSING: System.out.println("     ☹ OOPS: Missing task index. Please specify the index of the\n             task."); break;
+            case INDEX_EXCEEDED: System.out.println("     ☹ OOPS: Task not found. Index is out of range or the list\n             is empty."); break;
+            case SEARCHPHRASE_MISSING: System.out.println("     ☹ OOPS: Please specify using keywords the task you would\n             like to search for."); break;
+            case FORMAT_TODO: System.out.println("     ☹ OOPS: Expected format: \"todo [description of task]\""); break;
+            case FORMAT_DEADLINE: System.out.println("     ☹ OOPS: Expected format: \"deadline [description of task] /by\n             DD/MM/YYYY HHMM\""); break;
+            case FORMAT_EVENT: System.out.println("     ☹ OOPS: Expected format: \"event [description of event] /at\n            DD/MM/YYYY HHMM"); break;
         }
     }
-
-//    //if list command but list is empty
-//    public void listEmpty() {
-//        System.out.println("     ☹ ERROR Task list is empty. Please input a task before\n       viewing list.");
-//    }
-
-//    //if command is invalid
-//    public void invalidCommand() {
-//        System.out.println("     ☹ ERROR I don't understand what you have entered.");
-//    }
 }

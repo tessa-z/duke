@@ -16,6 +16,11 @@ public class ListCommand extends Command {
         //ask ui to print something
         //ask tasks to store the thing in arraylist
         //ask storage to write to file
-        ui.showList(tasks);
+        try {
+            if (tasks.getList().isEmpty()) { throw new DukeException(DukeException.ErrorType.LIST_EMPTY); }
+            ui.showList(tasks);
+        } catch (DukeException e) {
+            e.showError();
+        }
     }
 }

@@ -102,35 +102,4 @@ public class Storage {
         }
     }
 
-//    public void replaceItem(String oldString, String newString) {
-//        File file = new File(Storage.FILE_PATH);
-//        FileReader fr = null;
-//        BufferedReader br = null;
-//        try {
-//            fr = new FileReader(file);
-//            br = new BufferedReader(fr);
-//            String oldContent = "";
-//            String line = br.readLine();
-//
-//            while (line != null) {
-//                oldContent = oldContent + line + System.lineSeparator();
-//                line = br.readLine();
-//            }
-//            oldContent = oldContent.substring(0, oldContent.length() - 1);
-//            String newContent = oldContent.replace(oldString, newString);
-//            FileWriting writer = new FileWriting();
-//            writer.WriteFile(newContent, false);
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                br.close();
-//                fr.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-
 }
