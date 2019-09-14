@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Creates a Command object after extracting information needed
  * @author Zhang Yue Han
@@ -32,18 +34,22 @@ public class Parser {
                     return new AddCommand(t);
                 } else if (taskInfo[0].equals("deadline")) {
                     //parse date
+                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) { throw new DukeException(DukeException.ErrorType.FORMAT_DEADLINE); }
                     String[] dateInfo = parseDate("deadline", taskInfo);
+                    if (Arrays.toString(dateInfo).equals("[null]")) { throw new DukeException(DukeException.ErrorType.FORMAT_DEADLINE); }
                     Date d = new Date();
                     dateInfo[1] = d.convertDate(dateInfo[1]);
-                    if (dateInfo[1].equals("null")) { throw new DukeException(DukeException.ErrorType.FORMAT_DEADLINE); }
+                    if (dateInfo[1].equals("[null]")) { throw new DukeException(DukeException.ErrorType.FORMAT_DEADLINE); }
                     //create deadline object
                     Deadline t = new Deadline(dateInfo[0], dateInfo[1]);
                     return new AddCommand(t);
                 } else if (taskInfo[0].equals("event")) {
+                    if ((taskInfo.length < 2) || !(taskInfo[1].trim().length() > 0)) { throw new DukeException(DukeException.ErrorType.FORMAT_EVENT); }
                     String[] dateInfo = parseDate("event", taskInfo);
+                    if (dateInfo[0].equals("[null]")) { throw new DukeException(DukeException.ErrorType.FORMAT_EVENT); }
                     Date d = new Date();
                     dateInfo[1] = d.convertDate(dateInfo[1]);
-                    if (dateInfo[1].equals("null")) { throw new DukeException(DukeException.ErrorType.FORMAT_EVENT); }
+                    if (dateInfo[1].equals("[null]")) { throw new DukeException(DukeException.ErrorType.FORMAT_EVENT); }
                     //create event object
                     Event t = new Event(dateInfo[0], dateInfo[1]);
                     return new AddCommand(t);
@@ -63,17 +69,17 @@ public class Parser {
     }
 
     public static String[] parseDate(String type, String[] taskInfo) {
-        String[] dateInfo = null;//    public void Exception(DukeException e) {
-//
+        String[] dateInfo = { "null" };
+
+        System.out.println(Arrays.toString(dateInfo));
         if (type.equals("deadline")) {
             dateInfo = taskInfo[1].split("/by ");
             //tell AddCommand to go add itself
         } else if (type.equals("event")) {
             dateInfo = taskInfo[1].split("/at ");
             //tell AddCommand to go add itself
-        } else {
-            //throw some error
         }
+        System.out.println(Arrays.toString(dateInfo));
         return dateInfo;
     }
 }

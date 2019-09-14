@@ -5,6 +5,7 @@ public class Storage {
 
     private static String FILE_PATH = "/home/tessa/Documents/CS2113/duke/data/duke.txt";
 
+    Storage() {}
     Storage(String filePath) {
         FILE_PATH = filePath;
     }
@@ -84,11 +85,12 @@ public class Storage {
             while (line != null) {
                 oldContent = oldContent + line + System.lineSeparator();
                 line = br.readLine();
+
             }
             oldContent = oldContent.substring(0, oldContent.length() - 1);
             String newContent = oldContent.replace(oldString, "");
-            FileWriting writer = new FileWriting();
-            writer.WriteFile(newContent, false);
+            Storage writer = new Storage();
+            writer.writeFile(newContent, false);
 
         } catch (IOException e) {
             e.printStackTrace();
